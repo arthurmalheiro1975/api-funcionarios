@@ -13,6 +13,10 @@
                 cargo: funcionario.cargo
             })
 
+            await axios.post(`${process.env.API_FOLHA}/folha`,{
+                funcionarioId: funcionario.id,
+                salarioBruto: funcionario.salario,
+            }       )
 
         res.status(201).json(funcionario)
             
