@@ -1,9 +1,12 @@
-    const Funcionario = require("../models/funcionario")
+const Funcionario = require("../models/funcionario")
     const axios = require("axios")
     
     exports.cadastrar = async(req,res) => {
         
         try {
+            if (!req.body.nome || !req.body.cargo) {
+                return res.status(400).json({mensage:"Nome e cargo são obrigatórios"})
+            }
 
             const funcionario = await Funcionario.create(req.body)
             
@@ -22,7 +25,7 @@
             
         } catch (error) {
             console.log(error)
-            res.status(500).json({mensage:"Erro de Servidor"})
+            res.status(500).json({mensage:"Erro no Servidor"})
         }
     
     }
